@@ -1,0 +1,68 @@
+	   Assignment #3
+	   -------------
+
+	Commands
+	  Operation:	/18
+	  Style:	/6
+  	  Efficiency:	/6
+
+	Sub-Total:	/30
+	Penalty:	
+	
+	Total:		/30
+
+--------------------------------------------------
+- to test student's programs, you should start up the simulation and try to 
+  do the following:
+  - create a number of processes
+  - have quantums expire and see if round robin scheduling is occurring
+  - try to do send/receive/reply between two processes
+  - create a semaphore and try to use it between two processes
+  - do a fork to create a child process
+  - try to kill a process
+  - try to exit the current running process
+- generally you want to make sure that things work correctly
+  - for example, send/receive/reply P/V, fork/exit can only be called
+  by the currently running process, kill can be called by any process
+  - you can use Procinfo and Totalinfo to see the state of the system
+- take off at most 1 mark if they don't have a "good" way of assigning
+unique PID numbers
+  - it is good enough to have an unsigned int that is incremented to give
+    a new PID number
+- in terms of send/receive:
+  - do not penalize them if they don't check that the process that is being
+    replied to is not the same process that did the sending
+- for operation, make sure that each command executes as expected and   
+produces the required output
+  - do not penalize them if they don't do extensive error-checking of the
+    input types, i.e. they don't need to make sure the simulation user entered
+    a number when a number was expected
+  - having said that, they DO need to check for things like if the PID entered
+    for a send operation exists in the system
+  - in other words, make sure they check errors that pertain to the functioning
+    of the OS, it's not important that they check for errors pertaining to the
+    functioning of the simulation
+  - for round-robin scheduling, make sure that starvation of a process does
+    not occur (i.e. if there are many high-priority processes on the ready 
+    queue and only one low-priority process that doesn't mean the low-priority
+    process should never get a chance to run, although it may not run as often
+    as the high-priority processes do)
+- make sure they have an init process and that it only runs when no other 
+processes are available for execution
+  - they must also ensure that the init process never blocks (how they do this
+    is up to them, they may just disallow some commands for the init process) 
+- in terms of efficiency, make sure OS functions are efficient within reason
+in both execution time and space
+  - make sure they have a good method for passing messages to processes when
+    doing send/receive
+  - don't be concerned with the efficiency of things like Procinfo and 
+    Totalinfo
+- students may have documented reasons for particular design choices in a 
+readme file, if you feel their justification is valid feel free to not deduct
+marks for violations
+- as before, if the program seg faults immediately or won't compile, spend
+a minute or two to figure out why, if you can't figure it out give them 0
+for operation, otherwise take off 4-8 marks (depending on how big a problem
+it was)
+- they should have provided a makefile, and remember that they may use the
+provided list.h and list.o
